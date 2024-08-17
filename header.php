@@ -51,6 +51,7 @@
                                 }
                             }
                     ?>
+                <li style="position:absolute; right:10px;"><a href='<?= $hostname ?>'><span title="Home" class="fa fa-home"></span></a></li>
                 </ul>
             </div>
         </div>

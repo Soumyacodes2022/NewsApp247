@@ -8,7 +8,7 @@ $pageNo = $_GET['page'];
 }
 $offset = ($pageNo - 1) * $limit;
 
-$sql = "SELECT p.post_id,p.title,p.description,c.category_id,c.category_name,p.post_date,u.first_name,u.last_name,p.category,p.post_img FROM post p LEFT JOIN category c ON p.category=c.category_id LEFT JOIN user u ON p.author = u.user_id ORDER BY p.post_date DESC LIMIT {$offset},{$limit}";
+$sql = "SELECT * FROM post p LEFT JOIN category c ON p.category=c.category_id LEFT JOIN user u ON p.author = u.user_id ORDER BY p.post_date DESC LIMIT {$offset},{$limit}";
 
 $result = mysqli_query($conn,$sql);
 
@@ -38,7 +38,7 @@ $result = mysqli_query($conn,$sql);
                                             </span>
                                             <span>
                                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                                <a href='author.php'><?= $row['first_name']." ".$row['last_name']  ?></a>
+                                                <a href='author.php?authid=<?= $row['author'] ?>'><?= $row['first_name']." ".$row['last_name']  ?></a>
                                             </span>
                                             <span>
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>

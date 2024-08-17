@@ -22,7 +22,7 @@ $result = mysqli_query($conn,$sql);
                             <div class="post-information">
                                 <span>
                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                    <?= $row['category_name'] ?>
+                                    <a href='category.php?cid=<?= $row['category'] ?>'><?= $row['category_name'] ?></a>
                                 </span>
                                 <span>
                                     <i class="fa fa-user" aria-hidden="true"></i>

@@ -37,7 +37,7 @@ $result = mysqli_query($conn,$sql);
                     <div class="post-content">
                         <div class="row">
                             <div class="col-md-4">
-                                <a class="post-img" href="single.php"><img src="admin/upload/<?= $row['post_img'] ?>" alt=""/></a>
+                                <a class="post-img" href="single.php?id=<?= $row['post_id'] ?>"><img src="admin/upload/<?= $row['post_img'] ?>" alt=""/></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="inner-content clearfix">
@@ -50,7 +50,7 @@ $result = mysqli_query($conn,$sql);
                                         </span> -->
                                         <span>
                                             <i class="fa fa-user" aria-hidden="true"></i>
-                                            <a href='author.php'><?= $row['first_name']." ".$row['last_name']?></a>
+                                            <a href='author.php?authid=<?= $row['author'] ?>'><?= $row['first_name']." ".$row['last_name']?></a>
                                         </span>
                                         <span>
                                             <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -68,10 +68,8 @@ $result = mysqli_query($conn,$sql);
                     <?php
                         }
                     }else{
-                        echo "<h2>You have no New Posts!</h2>";
+                        echo "<h2>This Category has no New Posts!</h2>";
                     }
-                    ?>
-                     <?php
                     $sql2 = "SELECT post FROM category WHERE category_id = {$category_id}";
 
                     $result2 = mysqli_query($conn, $sql2);
@@ -101,6 +99,7 @@ $result = mysqli_query($conn,$sql);
                         echo "</ul>";
                     }
                     ?>
+                    <!-- For Testing -->
                     <!-- <ul class='pagination'>
                         <li class="active"><a href="">1</a></li>
                         <li><a href="">2</a></li>
