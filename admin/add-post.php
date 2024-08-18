@@ -13,11 +13,11 @@
                           <input type="text" name="post_title" class="form-control" autocomplete="off" required>
                       </div>
                       <div class="form-group">
-                          <label for="exampleInputPassword1"> Description</label>
+                          <label for="postdesc"> Description</label>
                           <textarea name="postdesc" class="form-control" rows="5"  required></textarea>
                       </div>
                       <div class="form-group">
-                          <label for="exampleInputPassword1">Category</label>
+                          <label for="category">Category</label>
                           <select name="category" class="form-control">
                               <option value="" disabled> Select Category</option>
                               <?php
@@ -33,7 +33,7 @@
                           </select>
                       </div>
                       <div class="form-group">
-                          <label for="exampleInputPassword1">Post image</label>
+                          <label for="fileToUpload">Post image</label>
                           <input type="file" name="fileToUpload" required>
                       </div>
                       <input type="submit" name="submit" class="btn btn-primary" value="Save" required />
