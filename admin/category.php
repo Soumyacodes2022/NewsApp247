@@ -4,7 +4,7 @@ if($_SESSION["user_role"]== '0'){
     header("Location: {$hostname}/admin/post.php");               
 }
 
-$limit = 3;
+$limit = 10;
 if (isset($_GET['page'])) {
     $pageNo = $_GET['page'];
 } else {
@@ -40,17 +40,19 @@ $result = mysqli_query($conn, $sql);
                     </thead>
                     <tbody>
                         <?php
+                        $serial = $offset+1;
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                                 <tr>
-                                    <td class='id'><?= $row['category_id'] ?></td>
+                                    <td class='id'><?= $serial ?></td>
                                     <td><?= $row['category_name'] ?></td>
                                     <td><?= $row['post'] ?></td>
                                     <td class='edit'><a href='update-category.php?id=<?= $row['category_id'] ?>'><i class='fa fa-edit'></i></a></td>
                                     <td class='delete'><a href='delete-category.php?id=<?= $row['category_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                                 </tr>
                         <?php
+                        $serial++;
                             }
                         } else {
                             echo "<p style='color:black; text-align:center; font-size:20px; margin-top:10px'>No DATA to show</p>";

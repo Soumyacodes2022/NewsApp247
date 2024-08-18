@@ -1,6 +1,6 @@
 <?php include "header.php"; 
 include "config.php";
-$limit = 3;
+$limit = 10;
 if(isset($_GET['page'])){
 $pageNo = $_GET['page'];
 }else{
@@ -39,11 +39,12 @@ $result = mysqli_query($conn,$sql);
                       </thead>
                       <tbody>
                         <?php
+                        $serial = $offset+1;
                         if(mysqli_num_rows($result)>0){
                             while($row = mysqli_fetch_assoc($result)){
                             ?>
                           <tr>
-                              <td class='id'><?= $row['post_id'] ?></td>
+                              <td class='id'><?= $serial ?></td>
                               <td><?= $row['title'] ?></td>
                               <td><?= $row['category_name'] ?></td>
                               <td><?= $row['post_date'] ?></td>
@@ -52,6 +53,7 @@ $result = mysqli_query($conn,$sql);
                               <td class='delete'><a href='delete-post.php?id=<?= $row['post_id'] ?>&catid=<?= $row['category'] ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
                           <?php
+                          $serial++;
                             }
                         }
                         else {

@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 if(empty($_FILES['new-image']['name'])){
-    $file_name = $_POST['old-image'];
+    $new_name = $_POST['old-image'];
 }
 else{
     $error = array();
@@ -23,9 +23,11 @@ else{
     if($file_size>3145728){
         $error[] = "File size should be within 3MB!";
     }
-
+    $new_name=  time()."-". basename($file_name);
+    $target = "upload/".$new_name;
+    $image_name = $new_name;
     if(empty($error) == true){
-        move_uploaded_file($file_tmp_name,'upload/'.$file_name);
+        move_uploaded_file($file_tmp_name,$target);
     }
     else{
         print_r($error);
@@ -41,7 +43,7 @@ $category = mysqli_real_escape_string($conn,$_POST['category']);
 
 $date = date("d M, Y H:i");
 
-$sql = "UPDATE post SET title='{$title}',description='{$description}', category={$category},post_date='{$date}', post_img='{$file_name}' WHERE post_id= {$post_id};";
+$sql = "UPDATE post SET title='{$title}',description='{$description}', category={$category},post_date='{$date}', post_img='{$image_name}' WHERE post_id= {$post_id};";
 
 if($_POST['old_category']!= $_POST["category"]){
 $sql .= "UPDATE category SET post = post - 1 WHERE category_id = {$_POST['old_category']};";

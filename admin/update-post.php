@@ -1,5 +1,16 @@
 <?php include "header.php"; 
-include "config.php"
+include "config.php";
+
+if($_SESSION['user_role']==0){
+  $post_id = $_GET['id'];
+  $sql2 = "SELECT author FROM post WHERE post_id = {$post_id}";
+  $result2 = mysqli_query($conn,$sql2);
+  $row2 = mysqli_fetch_assoc($result2);
+
+  if($row2['author'] != $_SESSION['user_id']){
+    header("Location: {$hostname}/admin/post.php");
+  }
+}
 
 ?>
 

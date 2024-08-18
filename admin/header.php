@@ -66,6 +66,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                             <?php
                             }
                             ?>
+                            <li class="<?= $currentPage=='settings.php' ? 'active' : '' ?>">
+                                <a href="settings.php">Settings</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

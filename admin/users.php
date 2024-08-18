@@ -3,7 +3,7 @@ include "config.php";
 if($_SESSION["user_role"]== '0'){
     header("Location: {$hostname}/admin/post.php");               
 }
-$limit = 3;
+$limit = 10;
 if(isset($_GET['page'])){
 $pageNo = $_GET['page'];
 }else{
@@ -36,11 +36,12 @@ $result = mysqli_query($conn, $sql);
                         </thead>
                         <tbody>
                             <?php
+                            $serial = $offset+1;
                             if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr>
-                                    <td class='id'><?= $row['user_id'] ?></td>
+                                    <td class='id'><?= $serial ?></td>
                                     <td><?= $row['first_name'] . " " . $row['last_name'] ?></td>
                                     <td><?= $row['username'] ?></td>
                                     <td><?= ($row['role'] == 1) ?  "Admin" :  "User" ?></td>
@@ -49,6 +50,7 @@ $result = mysqli_query($conn, $sql);
                                 </tr>
                         </tbody>
                 <?php
+                $serial++;
                             }
                         }
                         else {
